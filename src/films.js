@@ -36,12 +36,11 @@ function orderAlphabetically(array) {
 
 
 // TODO Exercise 5: Order by year, ascending
-function orderByYear() {
-
-
-
+function orderByYear(array) {
+   result = array.map(item => `${item.year} ${item.title}`).sort();
+   return result;
 }
-
+wq
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory() {
 
