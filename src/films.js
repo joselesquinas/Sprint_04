@@ -18,10 +18,10 @@ function getMoviesFromDirector(array, director) {
 function moviesAverageOfDirector(array, director) {
    let movieDirector = x => x['director'] === director;
    let directors = array.filter(movieDirector).map(x => x.score);
-   let promedio = (directors.reduce((acc,val) => {
+   let average = (directors.reduce((acc,val) => {
      return acc + val;
    } ,0) / (directors.length));
-   return promedio;
+   return average;
 }
 
 
