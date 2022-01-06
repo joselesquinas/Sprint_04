@@ -2,7 +2,7 @@
 // director
 function getAllDirectors(array) {
    let result = array.map(item => `${item.director}`);
-   console.log("EXERCICE 1 ->", result);
+   // console.log("EXERCICE 1 ->", result);
    return result;
 }
 
@@ -33,29 +33,73 @@ function orderAlphabetically(array) {
 }
 
 
-
-
 // TODO Exercise 5: Order by year, ascending
 function orderByYear(array) {
-   result = array.map(item => `${item.year}, ${item.title}`).sort();
-   return result;
+   let myArray = [];
+   myArray = array.map((films) => {
+      return {
+         title: films.title,
+         year: films.year
+      }
+   });
+
+   myArray.sort((a, b) => {
+      if (a.year < b.year) {
+         return -1;
+      }
+      if (a.year > b.year) {
+         return 1;
+      }
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+         return -1;
+      }
+      if (a.title.toLowerCase() > b.title.toLowerCase()) {
+         return 1;
+      }
+      return 0;
+   });
+
+   return myArray;
+
 }
 
 
-
-// Exercise 6: Calculate the average of the movies in a category
+// TODO Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory() {
+   let myCategory = [];
+   myCategory = movies.map((films) => {
+      return {
+         genre: films.genre,
+         score: films.score
+      };
+   });
+
+   return myCategory;
 
 }
+
+
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
+   // duration: '2h 55min'
 
 }
 
-// Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
-
+// TODO Exercise 8: Get the best film of a year
+function bestFilmOfYear(array, theYear) {
+   let filmsYear = array.filter(films => films.year === theYear);
+   let acc = 0;
+   for (let i = 0; i < filmsYear.length; i++) {
+      if (acc > filmsYear[i].score) {
+         acc = acc;
+      } else {
+         acc = filmsYear[i].score;
+      };
+   };
+   // console.log(acc);
+   let bestFilm = filmsYear.filter(films => (films.score === acc));
+   return bestFilm;
 }
 
 
