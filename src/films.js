@@ -65,28 +65,37 @@ function orderByYear(array) {
 
 
 // TODO Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
-   /*
-   let myCategory = [];
-   myCategory = movies.map((films) => {
-      return {
-         score: films.score,
-         genre: films.genre
-      }
-   });
- */
+function moviesAverageByCategory(film,category) {
+    let filmsGenre = x => x.genre[0] === category;
+    let filmsScore = film.filter(filmsGenre).map(x => x.score);
    
-let myFilter = movies.filter( item => `${item.includes(genre)}` === 'Action');
-    // return myCategory;
-    return myFilter;
+    let average = filmsScore.reduce((acc, val, i, arr) => {
+       console.log(acc);
+       console.log(val);
+      acc += val;
+      if(i === arr.length - 1){
+          return (acc/arr.length);
+      }
+      else{
+          return acc;
+      }
+
+    });
+    
+   return average.toPrecision(3);
 
 }
 
 
 
+
+
+
+
+
 // TODO Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
-   // duration: '2h 55min'
+   /*
    let myduration = array.map(currentItem => {
       let stringtime = currentItem.duration;
       let numberStr = stringtime.match(/\d+/g);
@@ -101,12 +110,20 @@ function hoursToMinutes(array) {
       } else if (stringtime.includes("min")) {
         minutes = numbers[1];
       } 
-      currentItem.duration = minutes + ' min';
+      currentItem.duration = minutes;
       return {...currentItem};
    });
   
    return myduration;
+   */
 }
+
+
+
+
+
+
+
 
 // TODO Exercise 8: Get the best film of a year
 function bestFilmOfYear(array, theYear) {
