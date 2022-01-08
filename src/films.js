@@ -21,7 +21,8 @@ function moviesAverageOfDirector(array, director) {
    let average = (directors.reduce((acc, val) => {
       return acc + val;
    }, 0) / (directors.length));
-   return average;
+   // return average;
+   return parseFloat(average.toPrecision(3));
 }
 
 
@@ -31,6 +32,7 @@ function orderAlphabetically(array) {
    result = (array.map(item => `${item.title}`).sort()).slice(0, 20);
    return result;
 }
+
 
 
 // TODO Exercise 5: Order by year, ascending
@@ -64,65 +66,52 @@ function orderByYear(array) {
 }
 
 
+
+
 // TODO Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory(film,category) {
-    let filmsGenre = x => x.genre[0] === category;
-    let filmsScore = film.filter(filmsGenre).map(x => x.score);
-   
-    let average = filmsScore.reduce((acc, val, i, arr) => {
-       console.log(acc);
-       console.log(val);
-      acc += val;
-      if(i === arr.length - 1){
-          return (acc/arr.length);
+function moviesAverageByCategory(film, category) {
+   let filmsGenre = x => x.genre[0] === category;
+   let filmsScore = film.filter(filmsGenre).map(x => x.score);
+   let average = filmsScore.reduce((acc, val, i, arr) => {
+      console.log(val);
+      if (val === '' || val === null) {
+        return acc;
+      } else {
+         acc += val;
+         if (i === arr.length - 1) {
+            return (acc / arr.length);
+         } else {
+            return acc;
+         }
       }
-      else{
-          return acc;
-      }
+   }, 0);
 
-    });
-    
-   return average.toPrecision(3);
-
+   return parseFloat(average.toPrecision(3));
 }
-
-
-
-
-
-
 
 
 // TODO Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes(array) {
-   /*
-   let myduration = array.map(currentItem => {
+   let myArray = array.map(currentItem => {
       let stringtime = currentItem.duration;
       let numberStr = stringtime.match(/\d+/g);
-
       let numbers = numberStr.map(Number);
 
       let minutes = 0;
       if (stringtime.includes("h") && stringtime.includes("min")) {
-        minutes = (numbers[0] * 60) + numbers[1];
+         minutes = (numbers[0] * 60) + numbers[1];
       } else if (stringtime.includes("h")) {
-        minutes = numbers[0] * 60;
+         minutes = numbers[0] * 60;
       } else if (stringtime.includes("min")) {
-        minutes = numbers[1];
-      } 
-      currentItem.duration = minutes;
-      return {...currentItem};
+         minutes = numbers[1];
+      };
+
+      let newArray = array.map((copia) => copia);
+      newArray.duration = minutes;
+      return newArray;
    });
-  
-   return myduration;
-   */
+   return myArray;
 }
-
-
-
-
-
-
 
 
 // TODO Exercise 8: Get the best film of a year
